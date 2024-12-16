@@ -39,10 +39,10 @@ class Bank():
     def exit(self):
         user_input = input("Do you want to exit?(Y/N) :")
         if (user_input == 'y' or user_input == 'Y'):
+            print("Continuing..")
+        elif (user_input == 'n' or user_input == 'N') :
             print("Exiting. Thank you!")
             sys.exit()
-        elif (user_input == 'n' or user_input == 'N') :
-            print("Continuing..")
 
         else :
             print("Please enter yes or no")
@@ -77,4 +77,3 @@ class Bank():
             c = c + 1
 obj=Bank()
 obj.validation()
-
