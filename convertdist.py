@@ -1,0 +1,8 @@
+feet = int(input("Enter the distance in feet : "))
+print("Distance in feet : ",feet)
+inches = float(feet *12)
+print("Distance in inches : ",inches)
+yard = float(feet * 0.33333333)
+print("Distance in yards : ",yard)
+miles = float(feet * 0.00018939)
+print("Distance in miles : ",miles)
