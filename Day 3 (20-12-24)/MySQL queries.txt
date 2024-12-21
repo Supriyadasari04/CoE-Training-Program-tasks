@@ -1,0 +1,188 @@
+mysql> use supriya_coe
+Database changed
+
+mysql>CREATE TABLE student (
+    Sno INT(10) NOT NULL PRIMARY KEY,
+    Sname VARCHAR(30),
+    marks DOUBLE,
+    city VARCHAR(30),
+    mobile INT(10),
+    gender VARCHAR(10)
+);
+
+mysql> INSERT INTO student (Sno, Sname, marks, city, mobile, gender) VALUES
+(1, 'Srinidhi', 80, 'Hyderabad', 1234567891, 'Female'),
+(2, 'Akhila', 90, 'Banglore', 857463829, 'Female'),
+(3, 'Lusi', 70, 'Chennai', 878746382, 'Female'),
+(4, 'Vihaani', 95, 'Hyderabad', 908746382, 'Female'),
+(5, 'Maahika', 65, 'kolkata', 808746382, 'Female'),
+(6, 'Ravi', 90, 'kolkata', 808746388, 'Male'),
+(7, 'Anmol', 88, 'Banglore', 808746300, 'Male'),
+(8, 'Pradeep', 77, 'Hyderabad', 808788300, 'Male'),
+(9, 'Vihaan', 80, 'pune', 80899900, 'Male'),
+(10, 'Shree', 76, 'banglore', 808911111, 'Male'),
+(11, 'Pavan', 33, 'Hyderabad', 805343111, 'Male'),
+(12, 'Neha', 27, 'Kolkala', 805343222, 'Female');
+
+mysql> desc students;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Sno    | int(10)     | NO   | PRI | NULL    |       |
+| Sname  | varchar(30) | YES  |     | NULL    |       |
+| marks  | double      | YES  |     | NULL    |       |
+| city   | varchar(30) | YES  |     | NULL    |       |
+| mobile | int(10)     | YES  |     | NULL    |       |
+| gender | varchar(10) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from students ;
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   2 | Akhila   |    90 | Banglore  |  857463829 | Female |
+|   3 | Lusi     |    70 | Chennai   |  878746382 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   5 | Maahika  |    65 | kolkata   |  808746382 | Female |
+|   6 | Ravi     |    90 | kolkata   |  808746388 | Male   |
+|   7 | Anmol    |    88 | Banglore  |  808746300 | Male   |
+|   8 | Pradeep  |    77 | Hyderabad |  808788300 | Male   |
+|   9 | Vihaan   |    80 | pune      |   80899900 | Male   |
+|  10 | Shree    |    76 | banglore  |  808911111 | Male   |
+|  11 | Pavan    |    33 | Hyderabad |  805343111 | Male   |
+|  12 | Neha     |    27 | Kolkala   |  805343222 | Female |
++-----+----------+-------+-----------+------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select * from students where city="hyderabad";
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   8 | Pradeep  |    77 | Hyderabad |  808788300 | Male   |
+|  11 | Pavan    |    33 | Hyderabad |  805343111 | Male   |
++-----+----------+-------+-----------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from students where city="hyderabad" or city="pune";
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   8 | Pradeep  |    77 | Hyderabad |  808788300 | Male   |
+|   9 | Vihaan   |    80 | pune      |   80899900 | Male   |
+|  11 | Pavan    |    33 | Hyderabad |  805343111 | Male   |
++-----+----------+-------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students where (city="banglore") or (city="pune" and gender="male") or (city="Hyderabad" and gender="female");
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   2 | Akhila   |    90 | Banglore  |  857463829 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   7 | Anmol    |    88 | Banglore  |  808746300 | Male   |
+|   9 | Vihaan   |    80 | pune      |   80899900 | Male   |
+|  10 | Shree    |    76 | banglore  |  808911111 | Male   |
++-----+----------+-------+-----------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from students where ( city="hyderabad" and (gender="male" and marks>70) or (gender="female" and marks>50)) or (city="pune" and gender="male") or city!="Banglore";
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   2 | Akhila   |    90 | Banglore  |  857463829 | Female |
+|   3 | Lusi     |    70 | Chennai   |  878746382 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   5 | Maahika  |    65 | kolkata   |  808746382 | Female |
+|   6 | Ravi     |    90 | kolkata   |  808746388 | Male   |
+|   8 | Pradeep  |    77 | Hyderabad |  808788300 | Male   |
+|   9 | Vihaan   |    80 | pune      |   80899900 | Male   |
+|  11 | Pavan    |    33 | Hyderabad |  805343111 | Male   |
+|  12 | Neha     |    27 | Kolkala   |  805343222 | Female |
++-----+----------+-------+-----------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select * from students where ( city="hyderabad" and (gender="male" and marks>70) or (gender="female" and marks>50)) or (city="pune" and gender="male") and  city!="Banglore";
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
+|   2 | Akhila   |    90 | Banglore  |  857463829 | Female |
+|   3 | Lusi     |    70 | Chennai   |  878746382 | Female |
+|   4 | Vihaani  |    95 | Hyderabad |  908746382 | Female |
+|   5 | Maahika  |    65 | kolkata   |  808746382 | Female |
+|   8 | Pradeep  |    77 | Hyderabad |  808788300 | Male   |
+|   9 | Vihaan   |    80 | pune      |   80899900 | Male   |
++-----+----------+-------+-----------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from students where (marks>70 and marks<80 ) and (city="Hyderabad" or city="Banglore");
++-----+---------+-------+-----------+-----------+--------+
+| Sno | Sname   | marks | city      | mobile    | gender |
++-----+---------+-------+-----------+-----------+--------+
+|   8 | Pradeep |    77 | Hyderabad | 808788300 | Male   |
+|  10 | Shree   |    76 | banglore  | 808911111 | Male   |
++-----+---------+-------+-----------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from students where sname like "s%i";
++-----+----------+-------+-----------+------------+--------+
+| Sno | Sname    | marks | city      | mobile     | gender |
++-----+----------+-------+-----------+------------+--------+
+|   1 | Srinidhi |    80 | Hyderabad | 1234567891 | Female |
++-----+----------+-------+-----------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select city,count(Sno) from students group by city;
++-----------+------------+
+| city      | count(Sno) |
++-----------+------------+
+| Banglore  |          3 |
+| Chennai   |          1 |
+| Hyderabad |          4 |
+| Kolkala   |          1 |
+| kolkata   |          2 |
+| pune      |          1 |
++-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select city,avg(marks) as avg from students group by city order by avg desc;
++-----------+-------------------+
+| city      | avg               |
++-----------+-------------------+
+| Banglore  | 84.66666666666667 |
+| pune      |                80 |
+| kolkata   |              77.5 |
+| Hyderabad |             71.25 |
+| Chennai   |                70 |
+| Kolkala   |                27 |
++-----------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> select city,max(marks) as max from students group by city ;
++-----------+------+
+| city      | max  |
++-----------+------+
+| Banglore  |   90 |
+| Chennai   |   70 |
+| Hyderabad |   95 |
+| Kolkala   |   27 |
+| kolkata   |   90 |
+| pune      |   80 |
++-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from students where city="hyderabad" order by marks desc limit 1;
++-----+---------+-------+-----------+-----------+--------+
+| Sno | Sname   | marks | city      | mobile    | gender |
++-----+---------+-------+-----------+-----------+--------+
+|   4 | Vihaani |    95 | Hyderabad | 908746382 | Female |
++-----+---------+-------+-----------+-----------+--------+
+1 row in set (0.00 sec)
