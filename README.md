@@ -6,6 +6,6 @@ Welcome to the AI/DS internship project repository, sponsored by TekWorks! This 
 **Technologies Used:**  
 - **Languages:** Python  
 - **Libraries:** Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn, TensorFlow/Keras, Plotly  
-- **Tools:** Jupyter Notebooks, SQL  
+- **Tools:** Jupyter Notebooks, SQL, Google Colab
 
 This project includes algorithms, datasets, and tasks completed during the internship.
