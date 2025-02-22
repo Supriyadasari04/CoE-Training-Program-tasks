@@ -1,0 +1,8 @@
+# A requirements.txt file lists the libraries and versions a project needs, ensuring consistent setups across different machines.
+# Run : pip install -r requirements.txt
+numpy
+matplotlib
+pandas
+seaborn
+streamlit
+scikit-learn
